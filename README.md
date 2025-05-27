@@ -1,6 +1,6 @@
 # Book Tracker App
 
-A full-stack web application for managing your reading list, built with Flask and React.
+A full-stack web application for managing your reading list, built with Flask and React. Build for People Recruitment Test. Integration with backend only works on page Library section Browse Library.
 
 ## Features
 
@@ -159,3 +159,131 @@ book-tracker-app/
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+# Test Instruction
+
+Hi there! 👋  
+Thanks for applying to our internship program.
+
+This is a small take-home assignment where you'll contribute to a simple **Book Tracker App**.  
+You can choose how to contribute based on your strongest area: **Frontend, Backend, DevOps, QA, or Data**.
+
+---
+
+## 🧭 Goal
+
+We want to see how you solve problems, write code, and structure your work — all in about **1–2 hours**.
+
+---
+
+If you're applying for **DevOps**, **QA**, or **Data**, you can use the provided base code in the `backend/` or `frontend/` folders.
+
+---
+
+## ✅ What to Do
+
+1. **Fork this repo** into your own GitHub account.
+2. **Pick ONE area** you're confident in:
+   - Frontend
+   - Backend
+   - DevOps
+   - QA
+   - Data
+   - Project/Product Manager
+   - UI/UX
+3. **Work only in the part that fits your chosen role.**
+4. Push your code and include in your `README.md`:
+   - Your chosen role
+   - How to run/test your part
+   - Any notes or decisions you made
+   - Create Merge Request to the main branch
+
+---
+
+## 🔧 Tasks by Role
+
+### 🔹 Frontend
+- Build a UI to:
+  - User Authentication
+  - User Settings
+  - User Insight
+- No need to connect to BE if API was not available. just create dummy page on FE
+- Bonus: Add more Essential feature
+
+### 🔹 Backend
+- Build a REST API that supports:
+  - Search and filtering
+  - Books added to user library
+- Use in-memory storage or simple JSON file
+- Bonus: Add input validation or simple auth
+
+### 🔹 DevOps
+- Use `backend/` or `frontend/` as the app to work on
+- Create:
+  - `Dockerfile`
+  - (Optional) `docker-compose.yml`
+  - (Optional) GitHub Actions CI (e.g., lint, test)
+- Bonus: Add environment config or deployment steps
+
+### 🔹 QA
+- Write test cases (unit/integration) for:
+  - API in `backend/`, or
+  - UI in `frontend/`
+- Tools you can use:
+  - Postman, Jest, Supertest, Cypress, Playwright, etc.
+- Bonus: Add a test report or coverage info
+
+### 🔹 UI/UX
+- Use Figma for Create new design for usecase User Authentication and User Settings/Profile
+- Bonus: Add more essential feature page
+
+### 🔹 Project/Product Manager
+- Create timeline if i need to add new checkout or payment feature
+    - task breakdown
+    - imagine you resource of 1 person for each role
+    - estimated time
+- Tools you can use:
+    - Notion, Any Project Management Tools
+- Delivery send document link to recruiter emails
+- Bonus: Add more timeline for other essential feature
+
+
+### 🔹 Data
+- Give me example dashboard using context or data related to book tracker apps that had feature
+    - Books library
+    - User Books Library
+    - Rent or Buy Books
+- Bonus: Output result as Graphic or add business related insight
+
+---
+
+## 🌟 Bonus Points (Optional)
+
+We appreciate extra touches like:
+
+- ✅ Clean code structure / design pattern
+- ✅ Branching with meaningful commit history
+- ✅ README with clear instructions
+- ✅ Use of linters, formatters, or type checkers
+- ✅ Tests even if you're not applying for QA
+- ✅ CI workflow using GitHub Actions
+- ✅ UI polish, error handling, logging, etc.
+
+---
+
+## 🕐 Timebox
+
+This should take around **2–4 hours**.  
+No need to overengineer — focus on clarity and your best work in a short time.
+
+---
+
+## 📩 Submission
+
+Once you're done, share your GitHub repo link with us.
+
+Good luck, and have fun! 🚀
+
+
+

@@ -5,7 +5,18 @@ import json
 import os
 
 app = Flask(__name__)
-CORS(app)
+
+# Configure CORS - more permissive for development
+CORS(app, 
+     origins=["http://localhost:8080", "http://localhost:5173", "http://127.0.0.1:8080", "http://127.0.0.1:5173"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
+     supports_credentials=True)
+
+# Add a test endpoint to check CORS
+@app.route('/api/test', methods=['GET', 'OPTIONS'])
+def test_cors():
+    return jsonify({"message": "CORS is working!"})
 
 # Load books from JSON file
 def load_books():
@@ -24,8 +35,16 @@ def save_books(books_data):
 # Initialize books from JSON file
 books = load_books()
 
-@app.route('/api/books', methods=['GET'])
+@app.route('/api/books', methods=['GET', 'OPTIONS'])
 def get_books():
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+    
     return jsonify(books)
 
 @app.route('/api/books', methods=['POST'])
@@ -45,8 +64,16 @@ def add_book():
     save_books(books)  # Save to JSON file
     return jsonify(book), 201
 
-@app.route('/api/books/<int:book_id>', methods=['PUT'])
+@app.route('/api/books/<int:book_id>', methods=['PUT', 'OPTIONS'])
 def update_book(book_id):
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify({})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        return response
+    
     data = request.json
     for book in books:
         if book['id'] == book_id:
@@ -71,4 +98,6 @@ def delete_book(book_id):
     return jsonify({'error': 'Book not found'}), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000) 
+    print("Starting Flask server on http://localhost:5001")
+    print("CORS enabled for development")
+    app.run(debug=True, port=5001, host='0.0.0.0') 
