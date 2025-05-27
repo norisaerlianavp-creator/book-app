@@ -173,7 +173,7 @@ You can choose how to contribute based on your strongest area: **Frontend, Backe
 
 ## 🧭 Goal
 
-We want to see how you solve problems, write code, and structure your work — all in about **1–2 hours**.
+We want to see how you solve problems, write code, and structure your work — all in about **2–4 hours**.
 
 ---
 
@@ -202,6 +202,12 @@ If you're applying for **DevOps**, **QA**, or **Data**, you can use the provided
 ---
 
 ## 🔧 Tasks by Role
+
+### 🔹 Fullstack
+- Complete feature for Library > Browse page
+    - implement search by name and category
+    - add detail page
+- Bonus: Add more Essential feature
 
 ### 🔹 Frontend
 - Build a UI to:
