@@ -1,11 +1,14 @@
-# Base Image
-FROM python:3.13-slim
+# Gunakan image dasar Python
+FROM python:3.11-slim
 
-# Install dependencies system
+# Instal dependensi sistem yang diperlukan (build dependencies)
 RUN apt-get update && apt-get install -y \
-  gcc \
   libpq-dev \
-  supervisor \
+  python3-dev \
+  default-libmysqlclient-dev \
+  build-essential \
+  pkg-config \
+  cron \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set environment variables
@@ -17,8 +20,9 @@ WORKDIR /app
 # Copy all to workdir
 COPY . .
 
-# Upgrade PIP & Install Dependencies
-RUN python -m pip install --upgrade pip && python -m pip install --no-cache-dir -r /app/requirements.txt --verbose
+# Perbarui pip dan install dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r /app/requirements.txt --verbose
 
 # Expose Port
 EXPOSE 5001
