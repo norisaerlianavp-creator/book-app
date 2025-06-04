@@ -3,7 +3,7 @@ FROM node:20
 
 # install dependencies
 WORKDIR /app
-COPY package*.json bun.lockb./
+COPY package*.json bun.lockb ./
 
 # Copy to Workdir
 COPY . .
