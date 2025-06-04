@@ -18,11 +18,14 @@ ENV TZ=Asia/Jakarta
 WORKDIR /app
 
 # Copy all to workdir
-COPY . .
+COPY ./backend/requirements.txt ./
 
 # Perbarui pip dan install dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r /app/requirements.txt --verbose
+
+# Copy all files
+COPY . .
 
 # Expose Port
 EXPOSE 5001
