@@ -18,7 +18,7 @@ ENV TZ=Asia/Jakarta
 WORKDIR /app
 
 # Copy all to workdir
-COPY ./backend/requirements.txt ./
+COPY ./requirements.txt ./
 
 # Perbarui pip dan install dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
