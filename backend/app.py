@@ -3,12 +3,27 @@ from flask_cors import CORS
 from datetime import datetime
 import json
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 
-# Configure CORS - more permissive for development
+# Get configuration from environment variables
+FLASK_HOST = os.getenv('FLASK_HOST', '0.0.0.0')
+FLASK_PORT = int(os.getenv('FLASK_PORT', 5001))
+FLASK_DEBUG = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:8080,http://localhost:5173').split(',')
+DATA_FILE = os.getenv('DATA_FILE', 'books.json')
+SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
+
+# Set Flask secret key
+app.secret_key = SECRET_KEY
+
+# Configure CORS with environment variables
 CORS(app, 
-     origins=["http://localhost:8080", "http://localhost:5173", "http://127.0.0.1:8080", "http://127.0.0.1:5173"],
+     origins=CORS_ORIGINS,
      methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
      allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Credentials"],
      supports_credentials=True)
@@ -21,7 +36,7 @@ def test_cors():
 # Load books from JSON file
 def load_books():
     try:
-        with open('books.json', 'r') as f:
+        with open(DATA_FILE, 'r') as f:
             data = json.load(f)
             return data.get('books', [])
     except FileNotFoundError:
@@ -29,7 +44,7 @@ def load_books():
 
 # Save books to JSON file
 def save_books(books_data):
-    with open('books.json', 'w') as f:
+    with open(DATA_FILE, 'w') as f:
         json.dump({'books': books_data}, f, indent=2)
 
 # Initialize books from JSON file
@@ -98,6 +113,7 @@ def delete_book(book_id):
     return jsonify({'error': 'Book not found'}), 404
 
 if __name__ == '__main__':
-    print("Starting Flask server on http://localhost:5001")
+    print(f"Starting Flask server on http://{FLASK_HOST}:{FLASK_PORT}")
     print("CORS enabled for development")
-    app.run(debug=True, port=5001, host='0.0.0.0') 
+    print(f"Allowed origins: {CORS_ORIGINS}")
+    app.run(debug=FLASK_DEBUG, port=FLASK_PORT, host=FLASK_HOST) 
