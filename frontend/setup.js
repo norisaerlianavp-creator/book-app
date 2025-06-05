@@ -30,12 +30,12 @@ async function setupEnvironment() {
   }
   
   const sourceFile = `env.${environment}`;
-  const targetFile = '.env';
+  const targetFile = environment === 'development' ? '.env' : `.env.${environment}`;
   
   try {
     if (fs.existsSync(sourceFile)) {
       if (fs.existsSync(targetFile)) {
-        const overwrite = await question('⚠️  .env file already exists. Overwrite? (y/N): ');
+        const overwrite = await question(`⚠️  ${targetFile} file already exists. Overwrite? (y/N): `);
         if (overwrite.trim().toLowerCase() !== 'y') {
           console.log('❌ Setup cancelled.');
           rl.close();
@@ -47,17 +47,23 @@ async function setupEnvironment() {
       console.log(`✅ Environment configured for ${environment}`);
       console.log(`📄 Copied ${sourceFile} to ${targetFile}`);
       
+      if (environment === 'development' && !fs.existsSync('.env.development')) {
+        fs.copyFileSync(sourceFile, '.env.development');
+        console.log(`📄 Also created .env.development for Vite dev mode`);
+      }
+      
       if (environment === 'production') {
         console.log('\n⚠️  IMPORTANT:');
-        console.log('   - Update VITE_API_URL in .env file');
-        console.log('   - Update VITE_API_BASE_URL in .env file');
+        console.log('   - Update VITE_API_URL in .env.production file');
+        console.log('   - Update VITE_API_BASE_URL in .env.production file');
         console.log('   - Review all production settings');
       }
       
       console.log('\n🎯 Next steps:');
-      console.log('   1. Review and edit .env file if needed');
+      console.log('   1. Review and edit environment files if needed');
       console.log('   2. Install dependencies: npm install');
       console.log('   3. Run the app: npm run dev');
+      console.log('\n📝 Note: Restart the dev server after changing environment files');
       
     } else {
       console.log(`❌ Environment file ${sourceFile} not found!`);

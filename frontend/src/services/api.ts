@@ -7,7 +7,7 @@ const IS_DEBUG = import.meta.env.VITE_ENABLE_DEBUG === 'true';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: 'http://localhost:5001',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
