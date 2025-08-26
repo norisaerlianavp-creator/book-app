@@ -1,0 +1,92 @@
+QA Test Report – Book Tracker App
+
+1. Scope
+Aplikasi ini dipakai untuk mengelola daftar buku.  
+Fitur yang saya tes:  
+- Tambah buku  
+- Lihat daftar buku  
+- Update status buku  
+- Hapus buku  
+- Search buku  
+- Tampilan responsive  
+
+2. Environment
+- Local:
+  - Backend → http://localhost:5000
+  - Frontend → http://localhost:5173
+- Live: https://book-app.cinte.id/
+
+3. Test Cases
+
+| ID     | Test Case               | Steps                          | Expected Result              | Result |
+|--------|-------------------------|--------------------------------|------------------------------|--------|
+| TC-001 | Add Book – Valid        | Isi judul lalu submit          | Buku muncul di list          | ada |
+| TC-002 | Add Book – Kosong       | Submit tanpa isi judul         | Error muncul                 | asa |
+| TC-003 | Add Book – Status salah | Isi status "abc"               | Harus error                  | Tidak ada validasi |
+| TC-004 | View List               | Buka halaman Library           | List buku muncul             | ada|
+| TC-005 | Update Book             | Ganti status lalu save         | Status berubah               | ada |
+| TC-006 | Delete Book             | Klik delete lalu confirm       | Buku hilang                  | ada |
+| TC-007 | Search – Ada data       | Cari "Harry"                   | Hanya buku terkait muncul    |  Tidak jalan |
+| TC-008 | Search – Tidak ada data | Cari "XYZ123"                  | "No results" tampil          |  Tidak jalan |
+| TC-009 | Responsive              | Buka di HP                     | Layout tetap rapi            | ada |
+| TC-010 | Cross-browser           | Coba di Chrome/Firefox/Edge    | Semua normal                 | Ada bug kecil di Edge |
+
+4. Hasil Tes
+- CRUD → Berfungsi normal  
+- Search → Tidak berfungsi  
+- Responsive → Bagus  
+- Browser → Edge ada bug kecil  
+
+5. Bugs
+1. Search tidak jalan 
+   - Expected: hasil filter  
+   - Actual: tidak berubah  
+
+2. Status tidak divalidasi 
+   - Bisa simpan status sembarang  
+
+3. Tampilan di Edge agak geser 
+   - Tombol “Add Book” tidak sejajar  
+
+6. Kesimpulan
+Menurut saya aplikasi sudah layak untuk tahap uji coba user, tapi search & validasi masih perlu diperbaiki sebelum produksi
+Fungsi utama (CRUD) sudah bisa dipakai dengan baik.  
+Masih ada 3 masalah: search, validasi status, dan tampilan di Edge.  
+Secara keseluruhan aplikasi sudah cukup stabil untuk dicoba user.
+
+
+7. Bonus (Tambahan)
+
+- Automated Test (manual coba pakai requests)
+  Saya sempat tes API pakai Python sederhana:
+
+  '''python'''
+  import requests
+
+  res = requests.get("http://localhost:5000/api/books")
+  print(res.status_code)   # 200
+  print(res.json())        # keluar list buku
+
+
+- Performance
+
+Page load sekitar 1 – 2 detik (Chrome)
+
+API response sekitar 100–200ms
+
+- Accessibility
+
+Bisa pakai keyboard (tab, enter)
+
+Warna kontras cukup jelas
+
+Belum ada ARIA label
+
+- Cross-browser (simple cek)
+| Browser | Result              |
+| ------- | ------------------- |
+| Chrome  | ada                 |
+| Firefox | ada                   |
+| Edge    | Tombol agak geser |
+| Safari  | Belum dicoba        |
+
