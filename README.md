@@ -236,12 +236,20 @@ If you're applying for **DevOps**, **QA**, or **Data**, you can use the provided
 - Bonus: Add environment config or deployment steps
 
 ### 🔹 QA
-- Write test cases (unit/integration) for:
-  - API in `backend/`, or
-  - UI in `frontend/`
-- Tools you can use:
-  - Postman, Jest, Supertest, Cypress, Playwright, etc.
-- Bonus: Add a test report or coverage info
+- **Create a comprehensive Test Plan** covering both positive and negative test scenarios
+- **Test Environment Options:**
+  - Local development: Run backend on `http://localhost:5000` and frontend on `http://localhost:5173`
+  - Live environment: Test on `https://book-app.cinte.id/`
+- **Deliverables:**
+  - Test plan document with test scenarios
+  - Test execution results
+  - Bug reports (if any issues found)
+  - Test coverage report
+- **Bonus:** 
+  - Automated test suite
+  - Performance testing results
+  - Accessibility compliance report
+  - Cross-browser testing matrix
 
 ### 🔹 UI/UX
 - Use Figma for Create new design for usecase User Authentication and User Settings/Profile
@@ -264,6 +272,29 @@ If you're applying for **DevOps**, **QA**, or **Data**, you can use the provided
     - User Books Library
     - Rent or Buy Books
 - Bonus: Output result as Graphic or add business related insight
+
+### 🔹 Customer Service
+- **Test Environment Options:**
+  - Local development: Run backend on `http://localhost:5000` and frontend on `http://localhost:5173`
+  - Live environment: Test on `https://book-app.cinte.id/`
+- **Create comprehensive customer support system** including:
+  - Help & FAQ page with searchable content
+  - Contact Support form with ticket system
+  - User Guide/Tutorial pages for app features
+  - Feedback & Suggestion submission system
+  - Live Chat widget interface (UI only, no backend integration needed)
+- **Deliverables:**
+  - Help & FAQ page with categorized questions and answers
+  - Contact Support form with form validation
+  - User onboarding tutorial pages
+  - Feedback submission form
+  - Customer service dashboard layout
+- **Bonus:** 
+  - Knowledge base with article categories
+  - User satisfaction survey component
+  - Support ticket tracking interface
+  - Multi-language support structure
+  - Customer service analytics dashboard mockup
 
 ---
 
